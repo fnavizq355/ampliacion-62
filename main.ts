@@ -29,7 +29,6 @@ let v = 0
 let cesta = 0
 let fin = 0
 fin = 1
-basic.showString("Pulsa A+B")
 basic.forever(function () {
     if (fin == 0) {
         x = randint(1, 3)
@@ -44,6 +43,8 @@ basic.forever(function () {
         if (x == cesta && y == 4) {
             fin = 1
             basic.showNumber(p)
+            basic.pause(500)
+            basic.clearScreen()
         } else {
             p = p + 1
             v = v - 25
