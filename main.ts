@@ -1,31 +1,35 @@
 input.onButtonPressed(Button.A, function () {
-    if (cesta != 1 && fin == 0) {
+    if (cesta > 1 && fin == 0) {
         led.unplot(cesta, 4)
         cesta = cesta - 1
         led.plot(cesta, 4)
     }
 })
+input.onButtonPressed(Button.AB, function () {
+    v = 500
+    cesta = 2
+    basic.showNumber(3)
+    basic.showNumber(2)
+    basic.showNumber(1)
+    basic.clearScreen()
+    led.plot(cesta, 4)
+    fin = 0
+})
 input.onButtonPressed(Button.B, function () {
-    if (cesta != 3 && fin == 0) {
+    if (cesta < 3 && fin == 0) {
         led.unplot(cesta, 4)
         cesta = cesta + 1
         led.plot(cesta, 4)
     }
 })
+let p = 0
 let y = 0
 let x = 0
+let v = 0
 let cesta = 0
 let fin = 0
-fin = 0
-let v = 500
-cesta = 2
-led.plot(cesta, 4)
-basic.forever(function () {
-    while (fin <= 0) {
-        basic.pause(1000)
-        fin = fin + 1
-    }
-})
+fin = 1
+basic.showString("Pulsa A+B")
 basic.forever(function () {
     if (fin == 0) {
         x = randint(1, 3)
@@ -33,22 +37,18 @@ basic.forever(function () {
         led.plot(x, y)
         for (let index = 0; index < 4; index++) {
             basic.pause(v)
-            if (fin == 0) {
-                break;
-            } else {
-                led.unplot(x, y)
-                y = y + 1
-                led.plot(x, y)
-            }
+            led.unplot(x, y)
+            y = y + 1
+            led.plot(x, y)
         }
         if (x == cesta && y == 4) {
             fin = 1
-        } else if (fin <= 0) {
-            led.unplot(x, y)
+            basic.showNumber(p)
         } else {
-            let p = 0
-            basic.showString("" + (p))
+            p = p + 1
+            v = v - 25
+            led.unplot(x, y)
+            basic.pause(v)
         }
-        basic.pause(v)
     }
 })
