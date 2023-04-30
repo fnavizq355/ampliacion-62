@@ -1,55 +1,55 @@
 input.onButtonPressed(Button.A, function () {
-    if (cesta > 1 && fin == 0) {
-        led.unplot(cesta, 4)
-        cesta = cesta - 1
-        led.plot(cesta, 4)
+    if (juega && coche > 1) {
+        led.unplot(coche, 4)
+        coche = coche - 1
+        led.plot(coche, 4)
     }
 })
 input.onButtonPressed(Button.AB, function () {
-    v = 500
-    cesta = 2
+    espera = 500
+    coche = 2
     basic.showNumber(3)
     basic.showNumber(2)
     basic.showNumber(1)
     basic.clearScreen()
-    led.plot(cesta, 4)
-    fin = 0
+    led.plot(coche, 4)
+    juega = true
 })
 input.onButtonPressed(Button.B, function () {
-    if (cesta < 3 && fin == 0) {
-        led.unplot(cesta, 4)
-        cesta = cesta + 1
-        led.plot(cesta, 4)
+    if (juega && coche < 3) {
+        led.unplot(coche, 4)
+        coche = coche + 1
+        led.plot(coche, 4)
     }
 })
-let p = 0
+let puntos = 0
 let y = 0
 let x = 0
-let v = 0
-let cesta = 0
-let fin = 0
-fin = 1
+let espera = 0
+let coche = 0
+let juega = false
+juega = false
 basic.forever(function () {
-    if (fin == 0) {
+    if (juega) {
         x = randint(1, 3)
         y = 0
         led.plot(x, y)
         for (let index = 0; index < 4; index++) {
-            basic.pause(v)
+            basic.pause(espera)
             led.unplot(x, y)
             y = y + 1
             led.plot(x, y)
         }
-        if (x == cesta && y == 4) {
-            fin = 1
-            basic.showNumber(p)
+        if (x == coche && y == 4) {
+            juega = false
+            basic.showNumber(puntos)
             basic.pause(500)
             basic.clearScreen()
         } else {
-            p = p + 1
-            v = v - 25
+            puntos = puntos + 1
+            espera = espera - 25
             led.unplot(x, y)
-            basic.pause(v)
+            basic.pause(espera)
         }
     }
 })
