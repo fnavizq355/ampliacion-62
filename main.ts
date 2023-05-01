@@ -1,12 +1,3 @@
-function puntuacion () {
-    if (x == coche) {
-        juega = false
-    } else {
-        puntos = puntos + 1
-        espera = espera - 25
-        led.unplot(x, y)
-    }
-}
 function final () {
     basic.clearScreen()
     basic.pause(100)
@@ -65,7 +56,7 @@ input.onButtonPressed(Button.AB, function () {
     inicio()
     while (juega) {
         trafico()
-        puntuacion()
+        esquivar()
     }
     final()
 })
@@ -76,10 +67,19 @@ input.onButtonPressed(Button.B, function () {
         led.plot(coche, 4)
     }
 })
-let y = 0
+function esquivar () {
+    if (x == coche) {
+        juega = false
+    } else {
+        puntos = puntos + 1
+        espera = espera - 25
+        led.unplot(x, y)
+    }
+}
 let espera = 0
-let puntos = 0
-let coche = 0
+let y = 0
 let x = 0
+let coche = 0
+let puntos = 0
 let juega = false
 juega = false
