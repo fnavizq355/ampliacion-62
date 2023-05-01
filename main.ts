@@ -49,11 +49,11 @@ function inicio () {
     basic.showNumber(2)
     basic.showNumber(1)
     basic.showLeds(`
-        . . . . .
         # . . . #
         . . . . .
         # . . . #
         . . . . .
+        # . . . #
         `)
     led.plot(coche, 4)
 }
